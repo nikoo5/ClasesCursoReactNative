@@ -5,6 +5,7 @@ import Button from "./components/Button";
 import CustomModal from "./components/CustomModal";
 import Header from "./components/Header";
 import Input from "./components/Input";
+import ItemLista from "./components/lists/main_list/ItemLista";
 
 export default function App() {
   const [itemName, setItemName] = useState("");
@@ -83,18 +84,12 @@ export default function App() {
         data={listItems}
         keyExtractor={(item) => item.id}
         renderItem={(data) => (
-          <View style={[styles.item, styles.shadow]}>
-            <Text>{data.item.value}</Text>
-            <View style={styles.buttonDelete}>
-              <Button
-                text="X"
-                textStyle={styles.buttonDeleteText}
-                onPress={() => {
-                  handleDeleteItem(data.item.id);
-                }}
-              />
-            </View>
-          </View>
+          <ItemLista
+            text={data.item.value}
+            onPress={() => {
+              handleDeleteItem(data.item.id);
+            }}
+          />
         )}
       />
     </View>
@@ -130,27 +125,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     paddingHorizontal: 10,
   },
-  item: {
-    flexDirection: "row",
-    width: "100%",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 10,
-    borderRadius: 5,
-    padding: 5,
-    paddingHorizontal: 10,
-    backgroundColor: "#F5F5F6",
-  },
-  buttonDelete: {
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    width: 35,
-    height: 35
-  },
-  buttonDeleteText: {
-    fontSize: 20
-  },
+  
+  
   shadow: {
     shadowColor: "#000",
     shadowOffset: {
