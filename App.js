@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList, Modal } from "react-native";
 import Header from "./components/Header";
+import Input from "./components/Input";
 
 export default function App() {
   const [itemName, setItemName] = useState("");
@@ -73,12 +74,7 @@ export default function App() {
       <Header />
 
       <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.inputAddItem}
-          placeholder="Agregar un Item..."
-          value={itemName}
-          onChangeText={setItemName}
-        ></TextInput>
+        <Input placeholder="Agregar un item..." value={itemName} onChangeText={setItemName} />
         <Button title="Agregar" color="#007769" onPress={handleAddItem} />
       </View>
 
@@ -124,12 +120,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 10,
     marginVertical: 10,
-  },
-  inputAddItem: {
-    flex: 1,
-    borderBottomWidth: 1,
-    borderBottomColor: "#004c40",
-    marginRight: 10,
   },
   itemList: {
     flex: 1,
