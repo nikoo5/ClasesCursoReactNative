@@ -1,6 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList, Modal } from "react-native";
+import { StyleSheet, Text, View, 
+  FlatList, Modal } from "react-native";
+import Button from "./components/Button";
 import Header from "./components/Header";
 import Input from "./components/Input";
 
@@ -56,16 +58,16 @@ export default function App() {
               </Text>
             </View>
             <View style={styles.modalButtonsContainer}>
-              <View style={styles.modalButton}>
-                <Button title="No" color="#007769" onPress={handleModalNo} />
-              </View>
-              <View style={styles.modalButton}>
-                <Button
-                  title="Si"
-                  color="#007769"
-                  onPress={() => handleModalYes(itemSelected.id)}
-                />
-              </View>
+              <Button
+                text="NO"
+                buttonStyle={styles.modalButton}
+                onPress={handleModalNo}
+              />
+              <Button
+                text="SI"
+                buttonStyle={styles.modalButton}
+                onPress={() => handleModalYes(itemSelected.id)}
+              />
             </View>
           </View>
         </View>
@@ -74,8 +76,16 @@ export default function App() {
       <Header />
 
       <View style={styles.inputContainer}>
-        <Input placeholder="Agregar un item..." value={itemName} onChangeText={setItemName} />
-        <Button title="Agregar" color="#007769" onPress={handleAddItem} />
+        <Input
+          placeholder="Agregar un item..."
+          value={itemName}
+          onChangeText={setItemName}
+        />
+        <Button
+          text="AGREGAR"
+          buttonStyle={styles.buttonAdd}
+          onPress={handleAddItem}
+        />
       </View>
 
       <FlatList
@@ -87,8 +97,8 @@ export default function App() {
             <Text>{data.item.value}</Text>
             <View style={styles.buttonDelete}>
               <Button
-                title="X"
-                color="#007769"
+                text="X"
+                textStyle={styles.buttonDeleteText}
                 onPress={() => {
                   handleDeleteItem(data.item.id);
                 }}
@@ -121,6 +131,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginVertical: 10,
   },
+  buttonAdd: {
+    maxWidth: 100
+  }, 
   itemList: {
     flex: 1,
     width: "100%",
@@ -139,8 +152,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5F5F6",
   },
   buttonDelete: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
     width: 35,
-    height: 35,
+    height: 35
+  },
+  buttonDeleteText: {
+    fontSize: 20
   },
   shadow: {
     shadowColor: "#000",
@@ -177,6 +196,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20
   },
   modalButton: {
-    width: 50
+    maxWidth: 50,
+    height: 30,
   }
 });
