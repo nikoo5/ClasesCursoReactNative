@@ -1,8 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, 
-  FlatList, Modal } from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 import Button from "./components/Button";
+import CustomModal from "./components/CustomModal";
 import Header from "./components/Header";
 import Input from "./components/Input";
 
@@ -49,29 +49,19 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Modal animationType="fade" visible={modalVisible} transparent={true}>
-        <View style={styles.modalScreen}>
-          <View style={[styles.modalConteiner, styles.shadow]}>
-            <View style={styles.modalMessageContainer}>
-              <Text>
-                ¿Esta seguro que desea eliminar el item "{itemSelected.value}"?
-              </Text>
-            </View>
-            <View style={styles.modalButtonsContainer}>
-              <Button
-                text="NO"
-                buttonStyle={styles.modalButton}
-                onPress={handleModalNo}
-              />
-              <Button
-                text="SI"
-                buttonStyle={styles.modalButton}
-                onPress={() => handleModalYes(itemSelected.id)}
-              />
-            </View>
-          </View>
-        </View>
-      </Modal>
+      <CustomModal
+        visible={modalVisible}
+        textCancel="NO"
+        textConfirm="SI"
+        text={
+          '¿Esta seguro que desea eliminar el item "' +
+          itemSelected.value +
+          '"?'
+        }
+        onCancel={handleModalNo}
+        onConfirm={() => handleModalYes(itemSelected.id)}
+      />
+
       <View style={styles.statusBar}></View>
       <Header />
 
@@ -172,31 +162,5 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
 
-  modalScreen: {
-    flex: 1,
-    backgroundColor: "#000000AA",
-    justifyContent: "center",
-    paddingHorizontal: 10,
-  },
-  modalConteiner: {
-    width: "100%",
-    height: 100,
-    backgroundColor: "#FFFFFF",
-    borderRadius: 10,
-  },
-  modalMessageContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  },  
-  modalButtonsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 10,
-    paddingHorizontal: 20
-  },
-  modalButton: {
-    maxWidth: 50,
-    height: 30,
-  }
+  
 });
