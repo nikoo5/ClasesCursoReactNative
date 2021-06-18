@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Button, ScrollView } from "react-native";
+import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList } from "react-native";
 
 export default function App() {
   const [itemName, setItemName] = useState("");
@@ -38,20 +38,19 @@ export default function App() {
         <Button title="ADD" color="#007769" onPress={handleAddItem} />
       </View>
 
-      <ScrollView style={styles.itemList}>
-        {
-          listItems.map((item, index) => {
-            return (
-              <View style={[styles.item, styles.shadow]}>
-                <Text>{item.value}</Text>
-                <View style={styles.buttonDelete}>
-                  <Button title="X" color="#007769" onPress={() => {handleDeleteItem(item.id)}} />
-                </View>
-              </View>
-            );
-          })
-        }
-      </ScrollView>
+      <FlatList
+        style={styles.itemList}
+        data={listItems}
+        keyExtractor={item => item.id}
+        renderItem={data => (          
+          <View style={[styles.item, styles.shadow]}>
+            <Text>{data.item.value}</Text>
+            <View style={styles.buttonDelete}>
+              <Button title="X" color="#007769" onPress={() => {handleDeleteItem(data.item.id)}} />
+            </View>
+          </View>
+        )}
+       />
     </View>
   );
 }
