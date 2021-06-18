@@ -6,6 +6,7 @@ import CustomModal from "./components/CustomModal";
 import Header from "./components/Header";
 import Input from "./components/Input";
 import ItemLista from "./components/lists/main_list/ItemLista";
+import Lista from "./components/lists/main_list/Lista";
 
 export default function App() {
   const [itemName, setItemName] = useState("");
@@ -79,19 +80,7 @@ export default function App() {
         />
       </View>
 
-      <FlatList
-        style={styles.itemList}
-        data={listItems}
-        keyExtractor={(item) => item.id}
-        renderItem={(data) => (
-          <ItemLista
-            text={data.item.value}
-            onPress={() => {
-              handleDeleteItem(data.item.id);
-            }}
-          />
-        )}
-      />
+      <Lista data={listItems} onDelete={handleDeleteItem} />
     </View>
   );
 }
@@ -118,24 +107,6 @@ const styles = StyleSheet.create({
   },
   buttonAdd: {
     maxWidth: 100
-  }, 
-  itemList: {
-    flex: 1,
-    width: "100%",
-    flexDirection: "column",
-    paddingHorizontal: 10,
-  },
-  
-  
-  shadow: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
   },
 
   
