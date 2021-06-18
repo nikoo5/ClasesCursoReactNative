@@ -1,10 +1,22 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList } from "react-native";
+import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList, Modal } from "react-native";
 
 export default function App() {
   const [itemName, setItemName] = useState("");
-  const [listItems, setListItems] = useState([]);
+  const [listItems, setListItems] = useState([
+    { id: "1", value: "Item 1" },
+    { id: "2", value: "Item 1" },
+    { id: "3", value: "Item 3" },
+    { id: "4", value: "Item 4" },
+    { id: "5", value: "Item 5" },
+    { id: "6", value: "Item 6" },
+    { id: "7", value: "Item 7" },
+    { id: "8", value: "Item 8" },
+  ]);
+
+  const [modalVisible, setModalVisible] = useState(false)
+  const [itemSelected, setItemSelected] = useState({})
 
   const handleAddItem = () => {
     if (itemName.trim() != "") {
@@ -17,12 +29,45 @@ export default function App() {
   };
 
   const handleDeleteItem = (id) => {
+    setItemSelected(listItems.filter(x => x.id == id)[0]);
+    setModalVisible(true);
+  }
+
+  const handleModalNo = () => {
+    setModalVisible(false);
+    setItemSelected({});
+  }
+
+  const handleModalYes = (id) => {
     setListItems(listItems.filter(x => x.id != id));
+    setModalVisible(false);
   }
 
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
+      <Modal animationType="fade" visible={modalVisible} transparent={true}>
+        <View style={styles.modalScreen}>
+          <View style={[styles.modalConteiner, styles.shadow]}>
+            <View style={styles.modalMessageContainer}>
+              <Text>
+                ¿Esta seguro que desea eliminar el item "{itemSelected.value}"?
+              </Text>
+            </View>
+            <View style={styles.modalButtonsContainer}>
+              <View style={styles.modalButton}>
+                <Button title="No" color="#007769" onPress={handleModalNo} />
+              </View>
+              <View style={styles.modalButton}>
+                <Button
+                  title="Si"
+                  color="#007769"
+                  onPress={() => handleModalYes(itemSelected.id)}
+                />
+              </View>
+            </View>
+          </View>
+        </View>
+      </Modal>
       <View style={styles.statusBar}></View>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>Lista de Compra</Text>
@@ -35,22 +80,28 @@ export default function App() {
           value={itemName}
           onChangeText={setItemName}
         ></TextInput>
-        <Button title="ADD" color="#007769" onPress={handleAddItem} />
+        <Button title="Agregar" color="#007769" onPress={handleAddItem} />
       </View>
 
       <FlatList
         style={styles.itemList}
         data={listItems}
-        keyExtractor={item => item.id}
-        renderItem={data => (          
+        keyExtractor={(item) => item.id}
+        renderItem={(data) => (
           <View style={[styles.item, styles.shadow]}>
             <Text>{data.item.value}</Text>
             <View style={styles.buttonDelete}>
-              <Button title="X" color="#007769" onPress={() => {handleDeleteItem(data.item.id)}} />
+              <Button
+                title="X"
+                color="#007769"
+                onPress={() => {
+                  handleDeleteItem(data.item.id);
+                }}
+              />
             </View>
           </View>
         )}
-       />
+      />
     </View>
   );
 }
@@ -108,7 +159,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 10,
-    borderRadius: 10,
+    borderRadius: 5,
     padding: 5,
     paddingHorizontal: 10,
     backgroundColor: "#F5F5F6",
@@ -127,4 +178,31 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
+
+  modalScreen: {
+    flex: 1,
+    backgroundColor: "#000000AA",
+    justifyContent: "center",
+    paddingHorizontal: 10,
+  },
+  modalConteiner: {
+    width: "100%",
+    height: 100,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 10,
+  },
+  modalMessageContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },  
+  modalButtonsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingVertical: 10,
+    paddingHorizontal: 20
+  },
+  modalButton: {
+    width: 50
+  }
 });
