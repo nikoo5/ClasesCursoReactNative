@@ -1,8 +1,21 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 
 export default function App() {
+  const [itemName, setItemName] = useState("");
+  const [listItems, setListItems] = useState([]);
+
+  const handleAddItem = () => {
+    if (itemName.trim() != "") {
+      setListItems([
+        ...listItems,
+        { id: Math.random().toString(), value: itemName },
+      ]);
+      setItemName("");
+    }
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -15,31 +28,23 @@ export default function App() {
         <TextInput
           style={styles.inputAddItem}
           placeholder="Agregar un Item..."
+          value={itemName}
+          onChangeText={setItemName}
         ></TextInput>
-        <Button title="ADD" color="#007769" />
+        <Button title="ADD" color="#007769" onPress={handleAddItem} />
       </View>
 
       <View style={styles.itemList}>
-        <View style={[styles.item, styles.shadow]}>
-          <Text>Item 1</Text>
-          <View style={styles.buttonDelete}>
-            <Button title="X" color="#007769" />
-          </View>
-        </View>
-
-        <View style={[styles.item, styles.shadow]}>
-          <Text>Item 2</Text>
-          <View style={styles.buttonDelete}>
-            <Button title="X" color="#007769" />
-          </View>
-        </View>
-
-        <View style={[styles.item, styles.shadow]}>
-          <Text>Item 3</Text>
-          <View style={styles.buttonDelete}>
-            <Button title="X" color="#007769" />
-          </View>
-        </View>
+        {listItems.map((item, index) => {
+          return (
+            <View style={[styles.item, styles.shadow]}>
+              <Text>{item.value}</Text>
+              <View style={styles.buttonDelete}>
+                <Button title="X" color="#007769" />
+              </View>
+            </View>
+          );
+        })}
       </View>
     </View>
   );
