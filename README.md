@@ -10,3 +10,7 @@ En esta clase ya se empezaron a utilizar los Hooks de react en conjunto con los 
 Primero agregando los items a una lista y mostrándolos utilizando una forma simple de map de javascript.
 Luego se mejoró dicha lista para que sea mas eficiente y ya utilizar un componente preparado para dicha función: **FlatList**.
 Por ultimo se realizó la implementación de Modal, como un cartel de verificación para el usuario.
+
+## Clase Practica 03 - 15/06/2021
+En la tercer clase, se refactorizó el proyecto, separando la aplicación en componentes personalizados.
+También se realizaron tareas y pruebas de debug y lectura de errores.

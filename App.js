@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList, Modal } from "react-native";
+import Header from "./components/Header";
 
 export default function App() {
   const [itemName, setItemName] = useState("");
@@ -69,9 +70,7 @@ export default function App() {
         </View>
       </Modal>
       <View style={styles.statusBar}></View>
-      <View style={styles.headerContainer}>
-        <Text style={styles.headerText}>Lista de Compra</Text>
-      </View>
+      <Header />
 
       <View style={styles.inputContainer}>
         <TextInput
@@ -113,26 +112,11 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     backgroundColor: "#E1E2E1",
-  },
-  headerContainer: {
-    height: 60,
-    width: "100%",
-    backgroundColor: "#00796b",
-    paddingHorizontal: 25,
-    justifyContent: "center",
-    borderTopColor: "#48a697",
-    borderBottomColor: "#004c40",
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-  },
+  },  
   statusBar: {
     width: "100%",
     height: 28,
     backgroundColor: "#004c40",
-  },
-  headerText: {
-    color: "#FFFFFF",
-    fontSize: 22,
   },
   inputContainer: {
     width: "100%",
