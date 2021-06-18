@@ -16,6 +16,10 @@ export default function App() {
     }
   };
 
+  const handleDeleteItem = (id) => {
+    setListItems(listItems.filter(x => x.id != id));
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -35,16 +39,18 @@ export default function App() {
       </View>
 
       <View style={styles.itemList}>
-        {listItems.map((item, index) => {
-          return (
-            <View style={[styles.item, styles.shadow]}>
-              <Text>{item.value}</Text>
-              <View style={styles.buttonDelete}>
-                <Button title="X" color="#007769" />
+        {
+          listItems.map((item, index) => {
+            return (
+              <View style={[styles.item, styles.shadow]}>
+                <Text>{item.value}</Text>
+                <View style={styles.buttonDelete}>
+                  <Button title="X" color="#007769" onPress={() => {handleDeleteItem(item.id)}} />
+                </View>
               </View>
-            </View>
-          );
-        })}
+            );
+          })
+        }
       </View>
     </View>
   );
