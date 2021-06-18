@@ -1,11 +1,10 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Button from "./components/Button";
 import CustomModal from "./components/CustomModal";
+import CustomStatusBar from "./components/CustomStatusBar";
 import Header from "./components/Header";
 import Input from "./components/Input";
-import ItemLista from "./components/lists/main_list/ItemLista";
 import Lista from "./components/lists/main_list/Lista";
 
 export default function App() {
@@ -64,7 +63,7 @@ export default function App() {
         onConfirm={() => handleModalYes(itemSelected.id)}
       />
 
-      <View style={styles.statusBar}></View>
+      <CustomStatusBar />
       <Header />
 
       <View style={styles.inputContainer}>
@@ -92,11 +91,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     backgroundColor: "#E1E2E1",
-  },  
-  statusBar: {
-    width: "100%",
-    height: 28,
-    backgroundColor: "#004c40",
   },
   inputContainer: {
     width: "100%",
