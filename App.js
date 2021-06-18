@@ -5,31 +5,42 @@ import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 export default function App() {
   return (
     <View style={styles.container}>
-      <View style={styles.topBar}>
+      <StatusBar style="auto" />
+      <View style={styles.statusBar}></View>
+      <View style={styles.headerContainer}>
+        <Text style={styles.headerText}>Lista de Compra</Text>
+      </View>
+
+      <View style={styles.inputContainer}>
         <TextInput
           style={styles.inputAddItem}
           placeholder="Agregar un Item..."
         ></TextInput>
-        <Button title="ADD" />
+        <Button title="ADD" color="#007769" />
       </View>
 
       <View style={styles.itemList}>
-        <View style={styles.item}>
+        <View style={[styles.item, styles.shadow]}>
           <Text>Item 1</Text>
-          <Button title="X" />
+          <View style={styles.buttonDelete}>
+            <Button title="X" color="#007769" />
+          </View>
         </View>
 
-        <View style={styles.item}>
+        <View style={[styles.item, styles.shadow]}>
           <Text>Item 2</Text>
-          <Button title="X" />
+          <View style={styles.buttonDelete}>
+            <Button title="X" color="#007769" />
+          </View>
         </View>
 
-        <View style={styles.item}>
-          <Text>Item 2</Text>
-          <Button title="X" />
+        <View style={[styles.item, styles.shadow]}>
+          <Text>Item 3</Text>
+          <View style={styles.buttonDelete}>
+            <Button title="X" color="#007769" />
+          </View>
         </View>
       </View>
-      <StatusBar style="auto" />
     </View>
   );
 }
@@ -40,8 +51,29 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "center",
+    backgroundColor: "#E1E2E1",
   },
-  topBar: {
+  headerContainer: {
+    height: 60,
+    width: "100%",
+    backgroundColor: "#00796b",
+    paddingHorizontal: 25,
+    justifyContent: "center",
+    borderTopColor: "#48a697",
+    borderBottomColor: "#004c40",
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+  },
+  statusBar: {
+    width: "100%",
+    height: 28,
+    backgroundColor: "#004c40",
+  },
+  headerText: {
+    color: "#FFFFFF",
+    fontSize: 22,
+  },
+  inputContainer: {
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -51,7 +83,7 @@ const styles = StyleSheet.create({
   inputAddItem: {
     flex: 1,
     borderBottomWidth: 1,
-    borderBottomColor: "black",
+    borderBottomColor: "#004c40",
     marginRight: 10,
   },
   itemList: {
@@ -66,9 +98,23 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 10,
-    borderColor: "black",
-    borderWidth: 1,
     borderRadius: 10,
     padding: 5,
+    paddingHorizontal: 10,
+    backgroundColor: "#F5F5F6",
+  },
+  buttonDelete: {
+    width: 35,
+    height: 35,
+  },
+  shadow: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
 });
