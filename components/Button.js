@@ -1,30 +1,38 @@
-import React from "react"
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import Colors from '../constants/Colors';
+
 
 const Button = (props) => {
+    const color = {backgroundColor: props.type == "secondary" ? Colors.secondary.main : Colors.primary.main };
     return (
       <TouchableOpacity
         activeOpacity={0.7}
+        style={{
+          ...color,
+          ...styles.button,
+          ...styles.shadow,
+          ...props.buttonStyle,
+        }}
         onPress={props.onPress}
-        style={[styles.container, styles.shadow, props.buttonStyle]}
+        onLongPress={props.onLongPress}
       >
-        <Text style={[styles.text, props.textStyle]}>{props.text}</Text>
+        <Text style={{ ...styles.text, ...styles.textStyle }}>
+          {props.title}
+        </Text>
       </TouchableOpacity>
     );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: "100%",
-    backgroundColor: "#007769",
+  button: {
+    padding: 10,
+    borderRadius: 3,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 3
   },
   text: {
-      color: "#FFFFFF",
-      textAlign: "center"
+      color: Colors.primary.text
   },
   shadow: {
     shadowColor: "#000",
@@ -35,7 +43,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-  }
+  },
 });
 
 export default Button;

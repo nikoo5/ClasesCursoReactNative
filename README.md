@@ -14,3 +14,7 @@ Por ultimo se realizó la implementación de Modal, como un cartel de verificaci
 ## Clase Practica 03 - 15/06/2021
 En la tercer clase, se refactorizó el proyecto, separando la aplicación en componentes personalizados.
 También se realizaron tareas y pruebas de debug y lectura de errores.
+
+## Clase Practica 04 - 22/06/2021
+Se reinició la app a 0 para crear un juego "Adivina el numero".
+Utilizamos props para envío de parámetros entre componentes, ademas de crear distintas pantallas.

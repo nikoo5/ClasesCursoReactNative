@@ -1,29 +1,37 @@
 import React from "react"
-import { StyleSheet, Text, View } from "react-native"
+import { StyleSheet, Text, View } from "react-native";
+import Colors from "../constants/Colors";
 
-const Header = () => {
+const Header = (props) => {
     return (
-      <View style={styles.headerContainer}>
-        <Text style={styles.headerText}>Lista de Compra</Text>
+      <View>
+        <View style={styles.statusBar}></View>
+        <View style={styles.container}>
+          <Text style={styles.text}>{props.title}</Text>
+        </View>
       </View>
     );
 }
 
 const styles = StyleSheet.create({
-  headerContainer: {
-    height: 60,
-    width: "100%",
-    backgroundColor: "#00796b",
-    paddingHorizontal: 25,
-    justifyContent: "center",
-    borderTopColor: "#48a697",
-    borderBottomColor: "#004c40",
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
+  statusBar: {
+    backgroundColor: "#004f04",
+    height: 36,
   },
-  headerText: {
+  container: {
+    height: 60,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 10,
+    backgroundColor: "#2e7d32",
+    borderTopColor: "#60ac5d",
+    borderTopWidth: 1,
+    borderBottomColor: "#004f04",
+    borderBottomWidth: 1
+  },
+  text: {
     color: "#FFFFFF",
-    fontSize: 22,
+    fontSize: 20,
   },
 });
 
