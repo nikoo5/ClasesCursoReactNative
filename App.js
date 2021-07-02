@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import MainNavigator from './navigations/MainNavigator';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -12,12 +13,7 @@ export default function App() {
 
   if (!fontsLoaded) return <AppLoading />;
 
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  return <MainNavigator />;
 }
 
 const styles = StyleSheet.create({
