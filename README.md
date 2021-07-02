@@ -14,3 +14,5 @@ Por ultimo se realizó la implementación de Modal, como un cartel de verificaci
 ## Clase Practica 03 - 15/06/2021
 En la tercer clase, se refactorizó el proyecto, separando la aplicación en componentes personalizados.
 También se realizaron tareas y pruebas de debug y lectura de errores.
+
+## Clase Practica 06 - 01/07/2021
