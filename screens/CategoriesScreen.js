@@ -1,29 +1,31 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 import CategoryGridItem from '../components/CategoryGridItem';
-import { CATEGORIES } from '../data/mock-data';
+import { selectCategory } from '../store/actions/category.actions';
 
 
 const CategoriesScreen = ({ navigation, route }) => {
+  const dispatch = useDispatch();
+  const breadCategories = useSelector((state) => state.categories.list);
+
   const renderItem = data => (
     <CategoryGridItem item={data.item} onSelected={handleSelected} />
   );
 
   const handleSelected = (item) => {
-    navigation.navigate("CategoryBread", {
-      categoryID: item.id,
-      name: item.name
-    });
+    dispatch(selectCategory(item.id))
+    navigation.navigate("CategoryBread", { name: item.name });
   }
 
   return (
     <FlatList
       numColumns={2}
-      data={CATEGORIES}
+      data={breadCategories}
       renderItem={renderItem}
-      keyExtractor={item => item.id}
+      keyExtractor={(item) => item.id}
     />
-  )
+  );
 }
 
 const styles = StyleSheet.create({
