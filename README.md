@@ -16,3 +16,7 @@ En la tercer clase, se refactorizó el proyecto, separando la aplicación en com
 También se realizaron tareas y pruebas de debug y lectura de errores.
 
 ## Clase Practica 06 - 01/07/2021
+Iniciamos el proyecto de una App de Panadería utilizando la navegación por Stack
+
+## Clase Practica 07 - 06/07/2021
+Se agregan estilos al header y se manejan datos entre pantallas

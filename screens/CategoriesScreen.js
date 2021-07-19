@@ -1,12 +1,28 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
+import CategoryGridItem from '../components/CategoryGridItem';
+import { CATEGORIES } from '../data/mock-data';
 
-const CategoriesScreen = ({ navigation }) => {
+
+const CategoriesScreen = ({ navigation, route }) => {
+  const renderItem = data => (
+    <CategoryGridItem item={data.item} onSelected={handleSelected} />
+  );
+
+  const handleSelected = (item) => {
+    navigation.navigate("CategoryBread", {
+      categoryID: item.id,
+      name: item.name
+    });
+  }
+
   return (
-    <View style={styles.screen}>
-      <Text>Category Screen</Text>
-      <Button title="Ir a Categorias de Pan" onPress={() => {navigation.navigate("Bread")}} />
-    </View>
+    <FlatList
+      numColumns={2}
+      data={CATEGORIES}
+      renderItem={renderItem}
+      keyExtractor={item => item.id}
+    />
   )
 }
 
