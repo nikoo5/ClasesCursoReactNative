@@ -6,6 +6,7 @@ import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryBreadScreen from '../screens/CategoryBreadScreen';
 import { Platform } from 'react-native';
 import Colors from '../constants/Colors';
+import CartScreen from '../screens/CartScreen';
 
 const Stack = createStackNavigator();
 
@@ -40,6 +41,11 @@ const MainNavigator = () => {
             name="DetailBread"
             options={{ title: "Detalles" }}
             component={BreadDetailScreen}
+          />
+          <Stack.Screen
+            name="Cart"
+            options={{ title: "Carrito" }}
+            component={CartScreen}
           />
         </Stack.Navigator>
       </NavigationContainer>

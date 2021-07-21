@@ -1,0 +1,1 @@
+export const URL_API = "https://panapp-cf990-default-rtdb.firebaseio.com/";

@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import CategoryGridItem from '../components/CategoryGridItem';
+import ShowCart from '../components/ShowCart';
 import { selectCategory } from '../store/actions/category.actions';
 
 
@@ -19,20 +20,22 @@ const CategoriesScreen = ({ navigation, route }) => {
   }
 
   return (
-    <FlatList
-      numColumns={2}
-      data={breadCategories}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.id}
-    />
+    <View style={styles.list}>
+      <FlatList
+        style={styles.list}
+        numColumns={2}
+        data={breadCategories}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
+      <ShowCart navigation={navigation} />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  list: {
+    flex: 1
   },
 });
 

@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { View, FlatList } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import BreadItem from "../components/BreadItem";
+import ShowCart from "../components/ShowCart";
 import { filterBread, selectBread } from "../store/actions/bread.actions";
 
 
@@ -24,14 +25,22 @@ const CategoryBreadScreen = ({ navigation }) => {
   );
 
   return (
-    <View>
+    <View style={styles.list}>
       <FlatList
+        style={styles.list}
         data={categoryBreads}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
+      <ShowCart navigation={navigation} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  list: {
+    flex: 1,
+  },
+});
 
 export default CategoryBreadScreen;
